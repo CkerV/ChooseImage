@@ -5,7 +5,7 @@
 
 #封装思路
 * 结构图
-![结构图](http://img.blog.csdn.net/20161015172346652)
+![结构图](http://img.blog.csdn.net/20161015173748393)
 * ChooseImageActivity继承自IChooseImageView，作为**view**层，处理相关的界面展示；
 * ChooseImagePresenterImpl继承自IChooseImagePresenter，作为**presenter**层，处理相关的业务逻辑；
 * ChooseImageManager作为**model**层，用来统一管理相关变量；
