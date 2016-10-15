@@ -1,4 +1,4 @@
-#引用
+#远程依赖
 * Gradle Compile
 
   Add it in your root build.gradle at the end of repositories:
