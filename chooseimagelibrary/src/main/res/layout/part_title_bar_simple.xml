@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 标题栏 -->
+<RelativeLayout
+    android:id="@+id/part_title_bar_simple_rv"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="53.0dip"
+    android:background="@color/colorPrimary">
+
+    <ImageButton
+        android:id="@+id/titlebar_btn_back"
+        android:layout_width="48dip"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:background="@null"
+        android:src="@drawable/titlebar_selector_back"
+        android:visibility="gone"/>
+
+
+    <TextView
+        android:id="@+id/titlebar_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:text=""
+        android:textColor="@android:color/white"
+        android:textSize="20sp"/>
+
+
+
+    <TextView
+        android:id="@+id/titlebar_tv_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10sp"
+        android:padding="3sp"
+        tools:text="完成"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"/>
+
+
+
+</RelativeLayout>
