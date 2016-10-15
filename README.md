@@ -65,7 +65,7 @@ public class TestActivity extends BaseActivity implements OnImageSelectedFinishe
 * ChooseImageManager作为**model**层，用来统一管理相关变量；
 
 #MVP相关代码
-* ##view层
+* view层
 ``` java
 public interface IChooseImageView extends BaseView {
 
@@ -107,7 +107,7 @@ public interface IChooseImageView extends BaseView {
     void notifyAdapterDataSetChanged();
 }
 ```
-* ##presenter层
+* presenter层
 ``` java
 public interface IChooseImagePresenter  {
     /**
