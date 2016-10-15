@@ -1,4 +1,58 @@
-#概述
+#引用
+* Gradle Compile
+
+  Add it in your root build.gradle at the end of repositories:
+
+ ```
+allprojects {
+		repositories {
+			...
+			maven { url "https://jitpack.io" }
+		}
+ 	}
+ ```
+ Step 2. Add the dependency
+ 
+ ```
+ dependencies {
+	        compile 'com.github.CkerV:ChooseImage:1.0'
+	}
+ ```
+ 
+#用法说明
+## 一句话启动ChooseImageActivity，可分单选模式和多选模式模式
+* 单选模式
+
+```java
+ChooseImageActivity.startActivityInSingleMode(TestActivity.this);
+```
+* 多选模式
+
+```java
+//传进可选择图片的数量，例如 mSelectNum = 9
+ChooseImageActivity.startActivity(TestActivity.this, mSelectNum);
+```
+## 启动ChooseImageActivity的Context必须实现**OnImageSelectedFinishedListener**接口，以实现完成选择图片后的逻辑处理
+```java
+public class TestActivity extends BaseActivity implements OnImageSelectedFinishedListener
+```
+```java
+ @Override
+    public void onFinish(List<String> selectedImages) {
+        for(int i = 0; i < selectedImages.size(); i++) {
+            Log.i(TAG, "已完成选择的图片:" + selectedImages.get(i));
+        }
+        mDatas.addAll(0, selectedImages);
+        //处理已选择的图片数量超过可选择图片数量的逻辑
+        if(mDatas.size() - 1 >= mSelectNum) {
+            for(int i = mDatas.size() - 1; i >= mSelectNum; i--)
+                mDatas.remove(i);
+        }
+        mRecyclerView.getAdapter().notifyDataSetChanged();
+    }
+```
+
+#library概述
 * 基于Universal-Image-Loader封装的选择图片library，参考[Android 超高仿微信图片选择器 图片该这么加载](http://blog.csdn.net/lmj623565791/article/details/39943731/),采用**MVP**架构对其进行封装。
 ![图片1](http://img.blog.csdn.net/20161015160533509)
 ![图片2](http://img.blog.csdn.net/20161015160554602)
@@ -11,7 +65,7 @@
 * ChooseImageManager作为**model**层，用来统一管理相关变量；
 
 #MVP相关代码
-* view层
+* ##view层
 ``` java
 public interface IChooseImageView extends BaseView {
 
@@ -53,7 +107,7 @@ public interface IChooseImageView extends BaseView {
     void notifyAdapterDataSetChanged();
 }
 ```
-* presenter层
+* ##presenter层
 ``` java
 public interface IChooseImagePresenter  {
     /**
@@ -93,35 +147,3 @@ public interface IChooseImagePresenter  {
 * **OnImageSelectedChangeListener**是用来监听选择的图片改变时所回调的接口，外部启动ChooseImageActivity的context可实现此接口（非必要）
 * **OnImageSelectedFinishedListener**是用来监听完成选择图片后所回调的接口，外部启动ChooseImageActivity的context**必须**实现此接口，否则会抛出异常！
 
-#用法
-## 一句话启动ChooseImageActivity，可分单选模式和多选模式模式
-* 单选模式
-
-```java
-ChooseImageActivity.startActivityInSingleMode(TestActivity.this);
-```
-* 多选模式
-
-```java
-//传进可选择图片的数量，例如 mSelectNum = 9
-ChooseImageActivity.startActivity(TestActivity.this, mSelectNum);
-```
-## 启动ChooseImageActivity的Context必须实现**OnImageSelectedFinishedListener**接口，以实现完成选择图片后的逻辑处理
-```java
-public class TestActivity extends BaseActivity implements OnImageSelectedFinishedListener
-```
-```java
- @Override
-    public void onFinish(List<String> selectedImages) {
-        for(int i = 0; i < selectedImages.size(); i++) {
-            Log.i(TAG, "已完成选择的图片:" + selectedImages.get(i));
-        }
-        mDatas.addAll(0, selectedImages);
-        //处理已选择的图片数量超过可选择图片数量的逻辑
-        if(mDatas.size() - 1 >= mSelectNum) {
-            for(int i = mDatas.size() - 1; i >= mSelectNum; i--)
-                mDatas.remove(i);
-        }
-        mRecyclerView.getAdapter().notifyDataSetChanged();
-    }
-```
