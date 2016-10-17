@@ -33,10 +33,22 @@ public class ChooseImageAdapter extends ClickableAdapter<ChooseImageAdapter.Choo
     }
 
     @Override
-    public void onBindVH(ChooseImageViewHolder holder, int position) {
+    public void onBindVH(final ChooseImageViewHolder holder, final int position) {
 
         holder.ivImage.setImageResource(R.drawable.base_img_null);
         holder.ivSelectState.setImageResource(R.drawable.choose_image_unselected);
+        holder.ivImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClickListener.onItemClick(holder.ivImage, position);
+            }
+        });
+        holder.ivSelectState.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClickListener.onItemClick(holder.ivSelectState, position);
+            }
+        });
 
         CommonImageLoader.displayImage(ImageDownloader.Scheme.FILE.wrap(mImgPaths.get(position)), holder.ivImage
                 , CommonImageLoader.MEMORY_CACHE_OPTIONS);

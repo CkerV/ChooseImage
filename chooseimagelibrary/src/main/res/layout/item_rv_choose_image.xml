@@ -8,7 +8,8 @@
         android:id="@+id/choose_img_iv"
         android:layout_width="fill_parent"
         android:layout_height="100dp"
-        android:scaleType="fitXY" />
+        android:scaleType="centerCrop"
+        android:clickable="true"/>
 
     <ImageView
         android:id="@+id/choose_img_iv_select_state"
@@ -19,7 +20,7 @@
         android:layout_marginRight="3dp"
         android:layout_marginTop="3dp"
         android:background="@null"
-        android:clickable="false"
+        android:clickable="true"
         android:src="@drawable/choose_image_unselected" />
 
 </RelativeLayout>

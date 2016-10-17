@@ -13,6 +13,10 @@
         <activity android:name=".base.img.view.ChooseImageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <activity android:name=".base.img.view.ImageDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
 
 </manifest>

@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -309,4 +310,13 @@ public class ChooseImageActivity extends BasePresenterActivity implements IChoos
         }
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK) {
+            mChooseImagePresenterImpl.chooseBack();
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

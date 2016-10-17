@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.view.View;
 import android.widget.Toast;
 
+import com.ckev.chooseimagelibrary.R;
 import com.ckev.chooseimagelibrary.base.img.assist.ChooseImageManager;
 import com.ckev.chooseimagelibrary.base.img.assist.ImageFileFilter;
 import com.ckev.chooseimagelibrary.base.img.assist.ImageScanUtil;
@@ -13,6 +14,7 @@ import com.ckev.chooseimagelibrary.base.img.listener.OnImageSelectedChangeListen
 import com.ckev.chooseimagelibrary.base.img.listener.OnImageSelectedFinishedListener;
 import com.ckev.chooseimagelibrary.base.img.view.ChooseImageActivity;
 import com.ckev.chooseimagelibrary.base.img.view.IChooseImageView;
+import com.ckev.chooseimagelibrary.base.img.view.ImageDetailActivity;
 import com.ckev.chooseimagelibrary.base.mvp.BasePresenter;
 
 import java.io.File;
@@ -77,30 +79,34 @@ public class ChooseImagePresenterImpl extends BasePresenter implements IChooseIm
     @Override
     public void doOnItemClick(View view, int position, int choiceMode, int selectLimitNum) {
         final String imageUrl = mChooseImageManager.getAllImages().get(position);
-        if(mChooseImageManager.getSelectedImages().contains(imageUrl)) {
-            mChooseImageManager.getSelectedImages().remove(imageUrl);
-            mChooseImageView.changeItemBackground(imageUrl, false);
-        } else {
-            switch (choiceMode) {
-                case ChooseImageActivity.MULTI_CHOICE_MODE :
-                    if (mChooseImageManager.getSelectedImages().size() == selectLimitNum) {
-                        Toast.makeText(mContext, "最多选择" + selectLimitNum + "张图片", Toast.LENGTH_SHORT).show();
-                    } else {
+        if(view.getId() == R.id.choose_img_iv_select_state) {
+            if (mChooseImageManager.getSelectedImages().contains(imageUrl)) {
+                mChooseImageManager.getSelectedImages().remove(imageUrl);
+                mChooseImageView.changeItemBackground(imageUrl, false);
+            } else {
+                switch (choiceMode) {
+                    case ChooseImageActivity.MULTI_CHOICE_MODE:
+                        if (mChooseImageManager.getSelectedImages().size() == selectLimitNum) {
+                            Toast.makeText(mContext, "最多选择" + selectLimitNum + "张图片", Toast.LENGTH_SHORT).show();
+                        } else {
+                            mChooseImageManager.getSelectedImages().add(imageUrl);
+                            mChooseImageView.changeItemBackground(imageUrl, true);
+                        }
+                        break;
+                    case ChooseImageActivity.SINGLE_CHOICE_MODE:
+                        /**
+                         * 可能会存在selectedImages中已经有元素的情况,必须先清除再添加
+                         */
+                        if (mChooseImageManager.getSelectedImages().size() != 0) {
+                            mChooseImageView.changeItemBackground(mChooseImageManager.getSelectedImages().get(0), false);
+                        }
+                        mChooseImageManager.clearSelectedImages();
                         mChooseImageManager.getSelectedImages().add(imageUrl);
                         mChooseImageView.changeItemBackground(imageUrl, true);
-                    }
-                    break;
-                case ChooseImageActivity.SINGLE_CHOICE_MODE :
-                    /**
-                     * 可能会存在selectedImages中已经有元素的情况,必须先清除再添加
-                     */
-                    if(mChooseImageManager.getSelectedImages().size() != 0) {
-                        mChooseImageView.changeItemBackground(mChooseImageManager.getSelectedImages().get(0), false);
-                    }
-                    mChooseImageManager.clearSelectedImages();
-                    mChooseImageManager.getSelectedImages().add(imageUrl);
-                    mChooseImageView.changeItemBackground(imageUrl, true);
+                }
             }
+        }else if(view.getId() == R.id.choose_img_iv) {
+            ImageDetailActivity.startActvitiy(mContext, imageUrl);
         }
     }
 

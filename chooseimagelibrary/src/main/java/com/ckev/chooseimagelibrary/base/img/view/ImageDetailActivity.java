@@ -1,10 +1,11 @@
-package com.ckev.chooseimage_test;
+package com.ckev.chooseimagelibrary.base.img.view;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import com.ckev.chooseimagelibrary.R;
 import com.ckev.chooseimagelibrary.base.activity.BaseActivity;
 import com.ckev.chooseimagelibrary.base.img.assist.CommonImageLoader;
 import com.nostra13.universalimageloader.core.download.ImageDownloader;
