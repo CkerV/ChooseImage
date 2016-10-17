@@ -10,6 +10,7 @@ import com.ckev.chooseimagelibrary.base.activity.BaseActivity;
 import com.ckev.chooseimagelibrary.base.img.listener.OnImageSelectedChangeListener;
 import com.ckev.chooseimagelibrary.base.img.listener.OnImageSelectedFinishedListener;
 import com.ckev.chooseimagelibrary.base.img.view.ChooseImageActivity;
+import com.ckev.chooseimagelibrary.base.img.view.ImageDetailActivity;
 import com.ckev.chooseimagelibrary.base.view.ClickableAdapter;
 
 import java.util.ArrayList;
