@@ -15,7 +15,7 @@ allprojects {
  
  ```
  dependencies {
-	    compile 'com.github.CkerV:ChooseImage:1.0'
+	    compile 'com.github.CkerV:ChooseImage:1.1'
  }
  ```
  
