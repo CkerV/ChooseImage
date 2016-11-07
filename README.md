@@ -54,8 +54,8 @@ public class TestActivity extends BaseActivity implements OnImageSelectedFinishe
 
 #library概述
 * 基于Universal-Image-Loader封装的选择图片library，参考[Android 超高仿微信图片选择器 图片该这么加载](http://blog.csdn.net/lmj623565791/article/details/39943731/),采用**MVP**架构对其进行封装。
-![图片1](http://img.blog.csdn.net/20161107191152836)
 
+![图片1](http://img.blog.csdn.net/20161107191152836)
 ![图片2](http://img.blog.csdn.net/20161107190838831)
 
 #封装思路
